@@ -60,4 +60,22 @@ class TinymceNewslink
 
     }
 
+    /**
+     * Initialize System Hook
+     * Runonce
+     * Copy plugin sources to assets/tinymce4/js/plugins/newslink
+     */
+    public function movePluginFiles()
+    {
+        $oFiles = \Files::getInstance();
+        if (!is_file(TL_ROOT . '/vendor/markocupic/contao-tinymce-plugin-newslink-bundle/src/Resources/tinymce4/js/plugins/newslink/copied.txt'))
+        {
+            $oFiles->rcopy('vendor/markocupic/contao-tinymce-plugin-newslink-bundle/src/Resources/tinymce4/js/plugins/newslink', 'assets/tinymce4/js/plugins/newslink');
+            $objFile = new \File('vendor/markocupic/contao-tinymce-plugin-newslink-bundle/src/Resources/tinymce4/js/plugins/newslink/copied.txt', true);
+            $objFile->append('Plugin files "assets/tinymce4/js/plugins/newslink/plugin.min.js" already copied to the assets directory in "assets/tinymce4/js/plugins/newslink".');
+            $objFile->close();
+        }
+
+    }
+
 }

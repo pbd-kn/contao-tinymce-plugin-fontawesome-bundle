@@ -7,6 +7,9 @@
  * @license LGPL-3.0+
  */
 
+// Copy plugin source to "assets/tinymce4/js/plugins/newslink"
+$GLOBALS['TL_HOOKS']['initializeSystem'][] = array('Markocupic\ContaoTinymcePluginNewslinkBundle\TinymceNewslink', 'movePluginFiles');
+
 // This plugin requires https://github.com/markocupic/contao-tinymce-plugin-builder-bundle
 if ($GLOBALS['TL_CONFIG']['useRTE'])
 {
@@ -24,6 +27,5 @@ if ($GLOBALS['TL_CONFIG']['useRTE'])
 
     // Add a new config row to the tinymce.init method (use the loadLanguageFile-hook)
     $GLOBALS['TL_HOOKS']['loadLanguageFile'][] = array('Markocupic\ContaoTinymcePluginNewslinkBundle\TinymceNewslink', 'loadLanguageData');
-
 }
 

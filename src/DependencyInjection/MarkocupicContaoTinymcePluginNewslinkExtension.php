@@ -13,7 +13,7 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
  * Class ContaoTinymcePluginNewslinkExtension
  * @package Markocupic\ContaoTinymcePluginNewslinkBundle\DependencyInjection
  */
-class ContaoTinymcePluginNewslinkExtension extends Extension
+class MarkocupicContaoTinymcePluginNewslinkExtension extends Extension
 {
     /**
      * {@inheritdoc}

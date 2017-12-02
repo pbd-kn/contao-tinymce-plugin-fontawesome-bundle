@@ -29,11 +29,6 @@
     ]
   },
   "extra": {
-    "contao-manager-plugin": "Markocupic\\ContaoTinymcePluginNewslinkBundle\\ContaoManager\\Plugin",
-    "contao":{
-      "sources":{
-        "src/Resources/tinymce4/plugins/newslink/plugin.min.js": "assets/tinymce4/js/plugins/newslink/plugin.min.js"
-      }
-    }
+    "contao-manager-plugin": "Markocupic\\ContaoTinymcePluginNewslinkBundle\\ContaoManager\\Plugin"
   }
 }
