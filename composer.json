@@ -1,0 +1,39 @@
+{
+  "name": "markocupic/contao-tinymce-plugin-newslink-bundle",
+  "type": "contao-bundle",
+  "description":"Add a newslink to tinyMCE rte.",
+  "keywords":["contao", "plugin", "newslink", "tinyMCE"],
+  "license": "LGPL-3.0+",
+  "authors": [
+    {
+      "name": "Marko Cupic",
+      "homepage": "https://github.com/markocupic"
+    }
+  ],
+  "require": {
+    "php": "^5.6|^7.0",
+    "symfony/framework-bundle": "^3.3",
+    "contao/core-bundle": "^4.4.2",
+    "markocupic/contao-tinymce-plugin-builder": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Markocupic\\ContaoTinymcePluginNewslinkBundle\\": "src/"
+    },
+    "classmap": [
+      "src/Resources/contao/"
+    ],
+    "exclude-from-classmap": [
+      "src/Resources/contao/config/",
+      "src/Resources/contao/languages/"
+    ]
+  },
+  "extra": {
+    "contao-manager-plugin": "Markocupic\\ContaoTinymcePluginNewslinkBundle\\ContaoManager\\Plugin",
+    "contao":{
+      "sources":{
+        "src/Resources/tinymce4/plugins/newslink/plugin.min.js": "assets/tinymce4/js/plugins/newslink/plugin.min.js"
+      }
+    }
+  }
+}
