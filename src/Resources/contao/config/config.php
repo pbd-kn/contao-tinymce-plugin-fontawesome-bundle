@@ -14,7 +14,7 @@ $GLOBALS['TL_HOOKS']['initializeSystem'][] = array('Markocupic\ContaoTinymcePlug
 if ($GLOBALS['TL_CONFIG']['useRTE'])
 {
     // Add stylesheet
-    $GLOBALS['TL_CSS'][] = 'bundles/markocupiccontaotinymcepluginnewslink/css/newslink.css';
+    $GLOBALS['TL_CSS'][] = 'bundles/markocupiccontaotinymcepluginnewslink/css/newslink.css|static';
 
     // Add a plugin to the tinymce editor
     $GLOBALS['TINYMCE']['SETTINGS']['PLUGINS'][] = 'newslink';
@@ -28,4 +28,3 @@ if ($GLOBALS['TL_CONFIG']['useRTE'])
     // Add a new config row to the tinymce.init method (use the loadLanguageFile-hook)
     $GLOBALS['TL_HOOKS']['loadLanguageFile'][] = array('Markocupic\ContaoTinymcePluginNewslinkBundle\TinymceNewslink', 'loadLanguageData');
 }
-
