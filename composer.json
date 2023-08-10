@@ -1,14 +1,15 @@
 {
-  "name": "markocupic/contao-tinymce-plugin-newslink-bundle",
+  "name": "pbd-kn/contao-tinymce-plugin-fontawesome-bundle",
   "type": "contao-bundle",
-  "description":"Add a newslink to tinyMCE rte.",
-  "keywords":["contao", "plugin", "newslink", "tinyMCE"],
+  "description":"Add a fontawesome to tinyMCE rte.",
+  "keywords":["contao", "plugin", "fontawesome", "tinyMCE"],
   "license": "LGPL-3.0+",
   "authors": [
-    {
-      "name": "Marko Cupic",
-      "homepage": "https://github.com/markocupic"
-    }
+        {
+            "name": "pbd-kn",
+            "email": "pb-contao@gmx.de",
+            "role": "Developer"
+        }
   ],
   "require": {
     "php": "^7.0|^8",
@@ -24,7 +25,7 @@
 
   "autoload": {
     "psr-4": {
-      "Markocupic\\ContaoTinymcePluginNewslinkBundle\\": "src/"
+      "PBD\\ContaoTinymcePluginFontawesomelinkBundle\\": "src/"
     },
     "classmap": [
       "src/Resources/contao/"
@@ -35,6 +36,7 @@
     ]
   },
   "extra": {
-    "contao-manager-plugin": "Markocupic\\ContaoTinymcePluginNewslinkBundle\\ContaoManager\\Plugin"
+    "contao-manager-plugin": "PBDKN\\ContaoTinymcePluginFontawesomeBundle\\ContaoManager\\Plugin"
   }
 }
+

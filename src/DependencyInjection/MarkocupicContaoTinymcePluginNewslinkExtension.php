@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Markocupic\ContaoTinymcePluginNewslinkBundle\DependencyInjection;
+namespace PBDKN\ContaoTinymcePluginFontawesomeBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

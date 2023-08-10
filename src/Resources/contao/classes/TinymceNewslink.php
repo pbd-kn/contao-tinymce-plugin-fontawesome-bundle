@@ -6,7 +6,7 @@
  * Time: 21:36
  */
 
-namespace Markocupic\ContaoTinymcePluginNewslinkBundle;
+namespace PBDKN\ContaoTinymcePluginFontawesomeBundle;
 
 
 /**

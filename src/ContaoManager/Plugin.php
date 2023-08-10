@@ -1,14 +1,13 @@
 <?php
 /**
- * @copyright  Marko Cupic 2017 <m.cupic@gmx.ch>
- * @author     Marko Cupic
+ * @author     Peter Broghammer
  * @package    Contao News Infinite Scroll Bundle Bundle
  * @license    LGPL-3.0+
  * @see           https://github.com/markocupic/contao-news-infinite-scroll-bundle
  *
  */
 
-namespace Markocupic\ContaoTinymcePluginNewslinkBundle\ContaoManager;
+namespace PBDKN\ContaoTinymcePluginFontawesomeBundle\ContaoManager;
 
 use Contao\ManagerPlugin\Bundle\Config\BundleConfig;
 use Contao\ManagerPlugin\Bundle\BundlePluginInterface;
@@ -17,7 +16,6 @@ use Contao\ManagerPlugin\Bundle\Parser\ParserInterface;
 /**
  * Plugin for the Contao Manager.
  *
- * @author Marko Cupic
  * @author Peter Broghammer <https://github.com/pbd-kn>
  */
 class Plugin implements BundlePluginInterface
@@ -28,7 +26,7 @@ class Plugin implements BundlePluginInterface
     public function getBundles(ParserInterface $parser)
     {
         return [
-            BundleConfig::create('Markocupic\ContaoTinymcePluginNewslinkBundle\MarkocupicContaoTinymcePluginNewslinkBundle')
+            BundleConfig::create('PBDKN\ContaoTinymcePluginFontawesomeBundle\PBDContaoTinymcePluginFontawesomeBundle')
                 ->setLoadAfter([
                     'Contao\CoreBundle\ContaoCoreBundle',
                     'Markocupic\ContaoTinymcePluginBuilderBundle\MarkocupicContaoTinymcePluginBuilderBundle'
