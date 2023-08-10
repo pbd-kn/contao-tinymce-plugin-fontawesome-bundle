@@ -18,6 +18,7 @@ class TinymceNewslink
     /**
      * Get all News items as json_encoded array
      * @author Marko Cupic
+     * @author Peter Broghammer
      * @return string
      */
     public static function getContaoNewsArchivesAsJSON()
@@ -41,7 +42,7 @@ class TinymceNewslink
                 $arrArchives[] = array('value' => $oArchive->id, 'text' => htmlspecialchars(html_entity_decode(strtoupper($oArchive->title))));
             }
         }
-
+        
         return array('archives' => $arrArchives, 'news' => $arrNews);
     }
 

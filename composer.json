@@ -11,11 +11,17 @@
     }
   ],
   "require": {
-    "php": "^5.6|^7.0",
-    "symfony/framework-bundle": "^3.3",
+    "php": "^7.0|^8",
     "contao/core-bundle": "^4.4.2",
-    "markocupic/contao-tinymce-plugin-builder-bundle": "^1.0"
+    "markocupic/contao-tinymce-plugin-builder-bundle": "*@dev"
   },
+  "repositories": [
+    {
+      "type": "path",
+      "url": "C:\\wampneu\\www\\co4\\Github Bundles\\contao-tinymce-plugin-builder-bundle"
+    }
+  ],
+
   "autoload": {
     "psr-4": {
       "Markocupic\\ContaoTinymcePluginNewslinkBundle\\": "src/"
