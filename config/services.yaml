@@ -1,0 +1,18 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        bind:
+            $projectDir: '%kernel.project_dir%'
+            $fontawesomeSourcePath: '%pbdkn_contao_tinymce_plugin_fontawesome.fontawesome_source_path%'
+            $fontawesomeMetaFileVersion: '%pbdkn_contao_tinymce_plugin_fontawesome.fontawesome_meta_file_version%'
+            $fontawesomeStyles: '%pbdkn_contao_tinymce_plugin_fontawesome.fontawesome_styles%'
+ 
+    Pbdkn\ContaoTinymcePluginFontawesomeBundle\:
+        resource: ../src/
+        exclude: ../src/{DependencyInjection,Resources,Resources/contao/config,Resources/contao/languages}
+
+#    Pbdkn\ContaoTinymcePluginFontawesomeBundle\Util\IconUtil:
+#        public: true
+        
+

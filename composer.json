@@ -25,10 +25,10 @@
 
   "autoload": {
     "psr-4": {
-      "PBD\\ContaoTinymcePluginFontawesomelinkBundle\\": "src/"
-    },
+      "Pbdkn\\ContaoTinymcePluginFontawesomeBundle\\": "src/"
+    },    
     "classmap": [
-      "src/Resources/contao/"
+      "src/Resources/contao"
     ],
     "exclude-from-classmap": [
       "src/Resources/contao/config/",
@@ -36,7 +36,7 @@
     ]
   },
   "extra": {
-    "contao-manager-plugin": "PBDKN\\ContaoTinymcePluginFontawesomeBundle\\ContaoManager\\Plugin"
+    "contao-manager-plugin": "Pbdkn\\ContaoTinymcePluginFontawesomeBundle\\ContaoManager\\Plugin"
   }
 }
 

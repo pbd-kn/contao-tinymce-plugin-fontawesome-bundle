@@ -1,1 +1,0 @@
-Plugin files "assets/tinymce4/js/plugins/newslink/plugin.min.js" already copied to the assets directory in "assets/tinymce4/js/plugins/newslink".

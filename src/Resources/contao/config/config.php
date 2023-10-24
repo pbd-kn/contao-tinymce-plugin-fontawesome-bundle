@@ -6,27 +6,31 @@
  *
  * @license LGPL-3.0+
  */
-
-$GLOBALS['TL_HOOKS']['initializeSystem'][] = array('PBDKN\ContaoTinymcePluginFontawesomelinkBundle\TinymceFontawesome', 'movePluginFiles');
+namespace Pbdkn\ContaoTinymcePluginFontawesomeBundle;
+$GLOBALS['TL_HOOKS']['initializeSystem'][] = array('Pbdkn\ContaoTinymcePluginFontawesomeBundle\TinymceFontawesome', 'initMe');
 
 // This plugin requires https://github.com/markocupic/contao-tinymce-plugin-builder-bundle
+//if (isset($GLOBALS['TL_CONFIG']['useRTE'])) {
 if ($GLOBALS['TL_CONFIG']['useRTE'])
 {
+
     // Add stylesheet
-    $GLOBALS['TL_CSS'][] = 'bundles/markocupiccontaotinymcepluginnewslink/css/newslink.css|static';
+    $GLOBALS['TL_CSS'][] = 'bundles/contaotinymcepluginfontawesome/css/mce-panel.css|static';
 
     // Add a plugin to the tinymce editor
-    $GLOBALS['TINYMCE']['SETTINGS']['PLUGINS'][] = 'fontawsome';
+    $GLOBALS['TINYMCE']['SETTINGS']['PLUGINS'][] = 'fontawesome';
 
     // Add a button to the toolbar in tinymce editor
-    $GLOBALS['TINYMCE']['SETTINGS']['TOOLBAR'][] = 'fontawsome';
+    $GLOBALS['TINYMCE']['SETTINGS']['TOOLBAR'][] = 'fontawesome';
+    $GLOBALS['TINYMCE']['SETTINGS']['EXTENDED_VALID_ELEMENTS'][] = 'button';
+    $GLOBALS['TINYMCE']['SETTINGS']['EXTENDED_VALID_ELEMENTS'][] = 'i[*]';
 
+    //$GLOBALS['TINYMCE']['SETTINGS']['CONTENT_CSS'][] = 'assets/font-awesome/webfonts/all.min.css';
+    $GLOBALS['TINYMCE']['SETTINGS']['CONTENT_CSS'][] = TinymceFontawesome::getFontawesomeCssFile() ;;
+    //$GLOBALS['TINYMCE']['SETTINGS']['CONTENT_CSS'][] = 'assets/tinymce4/js/plugins/fontawesome/css/all.min.css';
 
-    // Add a content_css in tinymce editor
+    //$GLOBALS['TINYMCE']['SETTINGS']['CONFIG_ROW']['font_awesome_path'] = "'assets/font-awesome/webfonts/all.min.css'";   // variable for plugin
+    $GLOBALS['TINYMCE']['SETTINGS']['CONFIG_ROW']['font_awesome_metafile_version'] = "'".TinymceFontawesome::getFontawesomeMetaVersion()."'";   // variable for plugin
 
-    // Add a new config row to the tinymce.init method (json_encoded array from a PHP class)
-    //$GLOBALS['TINYMCE']['SETTINGS']['CONFIG_ROW']['newslink_news_data'] = json_encode(Markocupic\ContaoTinymcePluginNewslinkBundle\TinymceNewslink::getContaoNewsArchivesAsJSON());
-
-    // Add a new config row to the tinymce.init method (use the loadLanguageFile-hook)
-    //$GLOBALS['TL_HOOKS']['loadLanguageFile'][] = array('Markocupic\ContaoTinymcePluginNewslinkBundle\TinymceNewslink', 'loadLanguageData');
 }
+//}
