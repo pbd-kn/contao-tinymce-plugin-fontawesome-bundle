@@ -91,8 +91,8 @@ class TinymceFontawesome
     public function movePluginFiles()
     {
         $this->debugMe('PBD TinyFontawesome call movePluginFiles');
-        //if (!is_file(TL_ROOT . '/vendor/pbd-kn/contao-tinymce-plugin-fontawesome-bundle/src/Resources/tinymce4/js/plugins/fontawesome/copied.txt'))
-        //{
+        if (!is_file(TL_ROOT . '/vendor/pbd-kn/contao-tinymce-plugin-fontawesome-bundle/src/Resources/tinymce4/js/plugins/fontawesome/copied.txt'))
+        {
             $this->debugMe('PBD TinyFontawesome movePluginFiles ausgefuehrt');
             $oFiles = \Files::getInstance();
             // Copy fontawe Plugin
@@ -131,9 +131,9 @@ class TinymceFontawesome
             $objFile->append('Plugin files "assets/tinymce4/js/plugins/fontawesome/*" already copied to the assets directory in "assets/tinymce4/js/plugins/fontawesome".');
             $objFile->close();
             $this->debugMe('PBD TinyFontawesome movePluginFiles kopiert');
-        //} else {
+        } else {
             $this->debugMe('PBD TinyFontawesome movePluginFiles wurde schon kopiert. Siehe vendor/pbd-kn/contao-tinymce-plugin-fontawesome-bundle/src/Resources/tinymce4/js/plugins/fontawesome/copied.txt');
-        //}
+        }
 
     }
     function debugMe($txt) {
