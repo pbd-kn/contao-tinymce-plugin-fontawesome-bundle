@@ -15,6 +15,8 @@ use Pbdkn\ContaoTinymcePluginFontawesomeBundle\DependencyInjection\Configuration
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Psr\Log\LoggerInterface;
+use Contao\CoreBundle\Monolog\ContaoContext;
+
 /**
  * Class TinymceFontawesome
  * @package Pbdkn\ContaoTinymcePluginFontawesomeBundle
@@ -26,10 +28,11 @@ class TinymceFontawesome
         private string $fontawesomeMetaFileVersion;                                                                                                             
         private array $fontawesomeStyles;
         private string $fontAweversion='';
+        private bool $debug = false;
     protected ?LoggerInterface $customLogger = null;
         
 
-    public function __construct(
+    public function __construct( 
     ) {
         $rootKey=Configuration::ROOT_KEY;
         $container = \Contao\System::getContainer();
@@ -39,15 +42,16 @@ class TinymceFontawesome
         $this->fontawesomeSourcePath = $container->getParameter($rootKey.'.fontawesome_source_path');
         $this->fontawesomeMetaFileVersion = $container->getParameter($rootKey.'.fontawesome_meta_file_version');
         $this->fontawesomeStyles = $container->getParameter($rootKey.'.fontawesome_styles');
-        $logPath = $container->getParameter('kernel.project_dir').'/var/logs/TinymceFontawesome.log';
         $this->customLogger = $container->get('monolog.logger.contao');
-        $streamHandler = new StreamHandler($logPath, Logger::DEBUG);
-        $this->customLogger->pushHandler($streamHandler);
-        $this->customLogger->debug('PBD Konstruktor TinyFontawesome');
-        $this->customLogger->debug('PBD Konstruktor TinyFontawesome fontawesomeSourcePath '.$this->fontawesomeSourcePath);
-        $this->customLogger->debug('PBD Konstruktor TinyFontawesome fontawesomeMetaFileVersion '.$this->fontawesomeMetaFileVersion);
-//        $this->customLogger->debug('PBD Konstruktor TinyFontawesome fontawesomeMetaFileVersion '.$this->fontawesomeMetaFileVersion);
-
+        if ($container->getParameter('kernel.debug')) {
+          $this->debug=true;
+          $logPath = $container->getParameter('kernel.project_dir').'/var/logs/TinymceFontawesome.log';
+          $streamHandler = new StreamHandler($logPath, Logger::INFO);
+          $this->customLogger->pushHandler($streamHandler);
+          $this->debugMe('PBD Konstruktor TinyFontawesome');
+          $this->debugMe('PBD Konstruktor TinyFontawesome fontawesomeSourcePath '.$this->fontawesomeSourcePath);
+          $this->debugMe('PBD Konstruktor TinyFontawesome fontawesomeMetaFileVersion '.$this->fontawesomeMetaFileVersion);
+         }
     }
     /**
      * @author Peter Broghammer
@@ -86,15 +90,16 @@ class TinymceFontawesome
      */
     public function movePluginFiles()
     {
-        $oFiles = \Files::getInstance();
-        $this->customLogger->debug('PBD TinyFontawesome movePluginFiles');
-        $this->customLogger->debug('PBD TinyFontawesome movePluginFiles !!!!!!!!!!!!! wird zum Test immer ausgefuehrt');
-
+        $this->debugMe('PBD TinyFontawesome call movePluginFiles');
         //if (!is_file(TL_ROOT . '/vendor/pbd-kn/contao-tinymce-plugin-fontawesome-bundle/src/Resources/tinymce4/js/plugins/fontawesome/copied.txt'))
         //{
+            $this->debugMe('PBD TinyFontawesome movePluginFiles ausgefuehrt');
+            $oFiles = \Files::getInstance();
+            // Copy fontawe Plugin
+            $oFiles->rcopy('vendor/pbd-kn/contao-tinymce-plugin-fontawesome-bundle/src/Resources/tinymce4/js/plugins/fontawesome', 'assets/tinymce4/js/plugins/fontawesome');
             $fontawesomeSourcePath = $this->fontawesomeSourcePath;
             $versionPattern = '/\/v(\d+)\.(\d+)\.(\d+)\//';
-            $fontAweversion=0;
+            $fontAweversion=6;   // default
             $matches=array();
             $res = preg_match($versionPattern, $fontawesomeSourcePath, $matches);
             if ($res) {
@@ -102,10 +107,7 @@ class TinymceFontawesome
                 $fontAweversion=$matches[1];              
               }
             }
-            $this->customLogger->debug("PBD TinyFontawesome movePluginFiles Version $fontAweversion");
-        
-            $this->customLogger->debug('PBD TinyFontawesome movePluginFiles rcopy("vendor/pbd-kn/contao-tinymce-plugin-fontawesome-bundle/src/Resources/tinymce4/js/plugins/fontawesome", "assets/tinymce4/js/plugins/fontawesome"');
-            $oFiles->rcopy('vendor/pbd-kn/contao-tinymce-plugin-fontawesome-bundle/src/Resources/tinymce4/js/plugins/fontawesome', 'assets/tinymce4/js/plugins/fontawesome');
+            $this->debugMe("PBD TinyFontawesome movePluginFiles Version $fontAweversion");        
             switch ($fontAweversion) {
               case 4:
                 $this->customLogger->debug("PBD TinyFontawesome movePluginFiles Version switch 4");
@@ -124,14 +126,19 @@ class TinymceFontawesome
                 $oFiles->rcopy('vendor/pbd-kn/contao-tinymce-plugin-fontawesome-bundle/fontawesome/css/fontawesome-free-6.4.0-web/', 'assets/font-awesome/webfonts/');
                 break;
             }            
+
             $objFile = new \File('vendor/pbd-kn/contao-tinymce-plugin-fontawesome-bundle/src/Resources/tinymce4/js/plugins/fontawesome/copied.txt', true);
             $objFile->append('Plugin files "assets/tinymce4/js/plugins/fontawesome/*" already copied to the assets directory in "assets/tinymce4/js/plugins/fontawesome".');
             $objFile->close();
-            $this->customLogger->debug('PBD TinyFontawesome movePluginFiles kopiert');
+            $this->debugMe('PBD TinyFontawesome movePluginFiles kopiert');
         //} else {
-            $this->customLogger->debug('PBD TinyFontawesome movePluginFiles wurde schon kopiert. Siehe vendor/pbd-kn/contao-tinymce-plugin-fontawesome-bundle/src/Resources/tinymce4/js/plugins/fontawesome/copied.txt');
+            $this->debugMe('PBD TinyFontawesome movePluginFiles wurde schon kopiert. Siehe vendor/pbd-kn/contao-tinymce-plugin-fontawesome-bundle/src/Resources/tinymce4/js/plugins/fontawesome/copied.txt');
         //}
 
     }
-
+    function debugMe($txt) {
+        if ($this->debug) {
+          $this->customLogger->info($txt);
+        }
+    }
 }
