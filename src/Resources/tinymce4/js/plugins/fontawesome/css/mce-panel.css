@@ -203,4 +203,7 @@ padding-top:1em
 .mce-i-flag:before {
     content: "\f024";
 }
+.tox-listboxfield {
+  background:yellow;
+}
 

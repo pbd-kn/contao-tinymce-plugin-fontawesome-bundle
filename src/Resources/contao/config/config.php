@@ -26,11 +26,12 @@ if ($GLOBALS['TL_CONFIG']['useRTE'])
     $GLOBALS['TINYMCE']['SETTINGS']['EXTENDED_VALID_ELEMENTS'][] = 'i[*]';
 
     //$GLOBALS['TINYMCE']['SETTINGS']['CONTENT_CSS'][] = 'assets/font-awesome/webfonts/all.min.css';
-    $GLOBALS['TINYMCE']['SETTINGS']['CONTENT_CSS'][] = TinymceFontawesome::getFontawesomeCssFile() ;;
+    $GLOBALS['TINYMCE']['SETTINGS']['CONTENT_CSS'][] = TinymceFontawesome::getFontawesomeCssBase() . 'css/all.min.css' ;
     //$GLOBALS['TINYMCE']['SETTINGS']['CONTENT_CSS'][] = 'assets/tinymce4/js/plugins/fontawesome/css/all.min.css';
 
     //$GLOBALS['TINYMCE']['SETTINGS']['CONFIG_ROW']['font_awesome_path'] = "'assets/font-awesome/webfonts/all.min.css'";   // variable for plugin
     $GLOBALS['TINYMCE']['SETTINGS']['CONFIG_ROW']['font_awesome_metafile_version'] = "'".TinymceFontawesome::getFontawesomeMetaVersion()."'";   // variable for plugin
-
+    $GLOBALS['TINYMCE']['SETTINGS']['CONFIG_ROW']['font_awesome_metafile_data'] = json_encode(TinymceFontawesome::getFontawesomeMetaData());   // variable for plugin
+  
 }
 //}
