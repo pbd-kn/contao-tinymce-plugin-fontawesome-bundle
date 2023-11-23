@@ -25,18 +25,20 @@ class Configuration implements ConfigurationInterface
     // also nun zum Mitschreiben. Dieser String wird auch von Contao verwendet.
     // es ist der name der Klasse in PbdknContaoTinymcePluginFontawesomeBundle und damit der Name des Bundles.
     // Symfony mach daraus nach CamelCaseAuswertung pbdkn_contao_tinymce_plugin_fontawesome_bundle
-    // in getname der Exgtension kann das bundle weggelassen werden, aber sonst muss es so sein
+    // in getname der Extension kann das bundle weggelassen werden, aber sonst muss es so sein
     // pbdkn_contao_tinymce_plugin_fontawesome
     // es ist wohl deshalb so gemacht damit im Treebuilder fuer die Konfiguration dieser String auch verwendet werden kann
     // s. getName in PBDContaoTinyPluginFontawesomeExtension
-    // Metadaten auch von https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/metadata/icons.json
-    // Metadaten auch von https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/metadata/icons.yml
+    // Metadaten habe ich mittels download von https://fontawesome.com/doies werden in der function movePluginFiles nach 
+    // assets/font-awesome/webfonts/ kopiert. Sie müssen irgendwo liegen, damit man von der Seite aus darauf zugreifen kann.
+    // eine andere Möglickeit wäre vielleicht sie unter public abzulegen.
+    
     // Config::FONTAWESOME_VERSION wird in src/config.php gesetzt
     public function getConfigTreeBuilder(): TreeBuilder
     {
-echo "PBD Configuration getConfigTreeBuilder rootKey " . self::ROOT_KEY."\n";
-echo "PBD Configuration getConfigTreeBuilder defaultPath ".'https://use.fontawesome.com/releases/v'.\Pbdkn\ContaoTinymcePluginFontawesomeBundle\Config::FONTAWESOME_VERSION.'/js/all.js'."\n";
-echo "PBD Configuration getConfigTreeBuilder defaultPath ".'https://use.fontawesome.com/releases/v'.Config::FONTAWESOME_VERSION.'/js/all.js'."\n";
+//echo "PBD Configuration getConfigTreeBuilder rootKey " . self::ROOT_KEY."\n";
+//echo "PBD Configuration getConfigTreeBuilder defaultPath ".'https://use.fontawesome.com/releases/v'.\Pbdkn\ContaoTinymcePluginFontawesomeBundle\Config::FONTAWESOME_VERSION.'/js/all.js'."\n";
+//echo "PBD Configuration getConfigTreeBuilder defaultPath ".'https://use.fontawesome.com/releases/v'.Config::FONTAWESOME_VERSION.'/js/all.js'."\n";
      //               ->defaultValue('https://use.fontawesome.com/releases/v'.Config::FONTAWESOME_VERSION.'/js/all.js')
         $treeBuilder = new TreeBuilder(self::ROOT_KEY);
         // siehe https://symfony.com/doc/current/components/config/definition.html

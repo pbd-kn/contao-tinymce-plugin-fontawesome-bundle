@@ -23,6 +23,8 @@ tinymce.addI18n('de', {
     'select size': 'Größe auswählen',
     'No icons matched your search': 'Keine Icons entsprechen Ihrer Suche',
     'DisplayCategory': 'Kategorie anzeigen (Auswahl)',
+    'submitButton': 'Übernehmen',
+    'cancelButton': 'Abbrechen',
     'address': 'address',
     'all':  'all',
     'back':  'back',

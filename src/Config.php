@@ -14,5 +14,5 @@ namespace Pbdkn\ContaoTinymcePluginFontawesomeBundle;
 
 class Config
 {
-    public const FONTAWESOME_VERSION = '6.4.0';
+    public const FONTAWESOME_VERSION = '6.4.2';
 }

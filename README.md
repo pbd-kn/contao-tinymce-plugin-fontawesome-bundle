@@ -17,10 +17,10 @@ Sind keine Einträge vorhanden, so wir die Defaulteinstellung installiert
 pbdkn_contao_tinymce_plugin_fontawesome:
     # get sourcepath for fontawesome 
     # default
-    fontawesome_source_path: 'https://use.fontawesome.com/releases/v6.4.0/js/all.js'
+    fontawesome_source_path: 'https://use.fontawesome.com/releases/v6.4.2/js/all.js'
     # Version of the metafile
     # default
-    fontawesome_meta_file_version: '6.4.0'
+    fontawesome_meta_file_version: '6.4.2'
 ```
 
  

@@ -74,35 +74,74 @@ class TinymceFontawesome
         $container = \System::getContainer();           // wg. static-function
         // Den Parameter aus dem Container abrufen
         $fontawesome_meta_file_version = $container->getParameter('pbdkn_contao_tinymce_plugin_fontawesome.fontawesome_meta_file_version');
+        //\System::log("PBD getFontawesomeMetaData fontawesome_meta_file_version |$fontawesome_meta_file_version| ", __METHOD__, TL_GENERAL);
         $metaData=[];
-        $objFile = new \File('vendor/pbd-kn/contao-tinymce-plugin-fontawesome-bundle/fontawesome/css/fontawesome-free-6.4.0-web/metadata/icons.json');
-        $json=$objFile->getContent();                // meta-jsonfile lesen 
-        //$objFile->close();
-        \System::log("PBD getFontawesomeMetaData len metadata ".strlen($json), __METHOD__, TL_GENERAL);
-        // aufbereiten json Fil fontawesome version 6
-        $retArray=[];
-        $metaData=json_decode($json, true);
-        \System::log("PBD getFontawesomeMetaData count ".count($metaData), __METHOD__, TL_GENERAL);
-        foreach ($metaData as $k=>$v) {
-          $icArray=[];
-          $icArray['id']=$k;                    //  id
-          $icArray['label']=$v['label'];           //  angezeigter name
-          $icArray['unicode']=$v['unicode'];       //  code
-          $icArray['family']=$v['free'];
-          $icArray['styles']=$v['styles'];         //  wird als family ausgewertet
-          $v['search']['terms'][]='all';
-          $icArray['search']=$v['search']['terms'];//  ergibt die categorien wird um all erweitert
-/*
-        \System::log("PBD getFontawesomeMetaData metaData[$k]: $v", __METHOD__, TL_GENERAL);
-          foreach ($v as $k1=>$v1) {
-            \System::log("PBD getFontawesomeMetaData v[$k1]: $v1", __METHOD__, TL_GENERAL);
-          }
-*/
-          $retArray[]=$icArray;
+        $versionPattern = '/\/v(\d+)\.(\d+)\.(\d+)\//';
+        $fontAweversion=6;   // default
+        $res= explode(".", $fontawesome_meta_file_version);
+        foreach ($res as $k=>$v)    \System::log("PBD getFontawesomeMetaData fontawesome_meta_file_version res[$k] $v", __METHOD__, TL_GENERAL);
+        if ($res) {
+          if (isset($res[0])) {
+            $fontAweversion=$res[0];              
         }
-
+        switch ($fontAweversion) {
+              case 5:
+                $objFile = new \File('vendor/pbd-kn/contao-tinymce-plugin-fontawesome-bundle/fontawesome/css/fontawesome-free-5.12.0-web/metadata/icons.json');
+                $json=$objFile->getContent();                // meta-jsonfile lesen 
+                \System::log("PBD getFontawesomeMetaData Version 5 len metadata ".strlen($json), __METHOD__, TL_GENERAL);
+                // aufbereiten json File fontawesome version 5
+                $retArray=[];
+                $metaData=json_decode($json, true);
+                foreach ($metaData as $k=>$v) {
+                  $icArray=[];
+                  $icArray['id']=$k;                    //  id
+                  $icArray['label']=$v['label'];           //  angezeigter name
+                  $icArray['unicode']=$v['unicode'];       //  code
+                  $icArray['family']=$v['free'];
+                  $icArray['styles']=$v['styles'];         //  wird als family ausgewertet
+                  $v['search']['terms'][]='all';
+                  $icArray['search']=$v['search']['terms'];//  ergibt die categorien wird um all erweitert
+/*
+                  \System::log("PBD getFontawesomeMetaData metaData[$k]: $v", __METHOD__, TL_GENERAL);
+                  foreach ($v as $k1=>$v1) {
+                    \System::log("PBD getFontawesomeMetaData v[$k1]: $v1", __METHOD__, TL_GENERAL);
+                  }
+*/
+                  $retArray[]=$icArray;
+                  }
+              break;
+              case 6:
+              default:
+                if ($fontAweversion != 6 ) {
+                  \System::log("PBD Fontawesome metadata $fontAweversion wird nicht unterstützt Version 6 verwendet", __METHOD__, TL_ERROR);
+                }
+                $objFile = new \File('vendor/pbd-kn/contao-tinymce-plugin-fontawesome-bundle/fontawesome/css/fontawesome-free-6.4.2-web/metadata/icons.json');
+                $json=$objFile->getContent();                // meta-jsonfile lesen 
+                // aufbereiten json File fontawesome version 6
+                $retArray=[];
+                $metaData=json_decode($json, true);
+                \System::log("PBD getFontawesomeMetaData Version 6 count ".count($metaData).' Version 6', __METHOD__, TL_GENERAL);
+                foreach ($metaData as $k=>$v) {
+                  $icArray=[];
+                  $icArray['id']=$k;                    //  id
+                  $icArray['label']=$v['label'];           //  angezeigter name
+                  $icArray['unicode']=$v['unicode'];       //  code
+                  $icArray['family']=$v['free'];
+                  $icArray['styles']=$v['styles'];         //  wird als family ausgewertet
+                  $v['search']['terms'][]='all';
+                  $icArray['search']=$v['search']['terms'];//  ergibt die categorien wird um all erweitert
+/*
+                  \System::log("PBD getFontawesomeMetaData metaData[$k]: $v", __METHOD__, TL_GENERAL);
+                  foreach ($v as $k1=>$v1) {
+                    \System::log("PBD getFontawesomeMetaData v[$k1]: $v1", __METHOD__, TL_GENERAL);
+                  }
+*/
+                  $retArray[]=$icArray;
+                }
+                break;
+              }
+          }
         return $retArray;
-
     }
  
     /**
@@ -110,7 +149,8 @@ class TinymceFontawesome
      * @return string
      */
     public static function getFontawesomeCssBase() {
-        return 'assets/font-awesome/'; // wurde durch movePluginFiles dahin kopiert wg. webspace
+        return 'assets/font-awesome/'; // wurde durch movePluginFiles dahin kopiert wg. webspace zugriff
+                                       // vielleicht sollte das nach public gelegt werden
     }
 
 
@@ -149,17 +189,19 @@ class TinymceFontawesome
             }
             $this->debugMe("PBD TinyFontawesome movePluginFiles Version $fontAweversion");        
             switch ($fontAweversion) {
+/*
               case 4:
                 $this->customLogger->debug("PBD TinyFontawesome movePluginFiles Version switch 4");
                 $oFiles->rcopy('vendor/pbd-kn/contao-tinymce-plugin-fontawesome-bundle/fontawesome/css/fontawesome-free-4.7.0-web/', 'assets/font-awesome/webfonts/');
                 break;
+*/
               case 5:
                 $this->customLogger->debug("PBD TinyFontawesome movePluginFiles Version switch 5");
                 $oFiles->rcopy('vendor/pbd-kn/contao-tinymce-plugin-fontawesome-bundle/fontawesome/css/fontawesome-free-5.12.0-web/', 'assets/font-awesome/webfonts/');
                 break;
               case 6:
                 $this->customLogger->debug("PBD TinyFontawesome movePluginFiles Version switch 6");
-                $oFiles->rcopy('vendor/pbd-kn/contao-tinymce-plugin-fontawesome-bundle/fontawesome/css/fontawesome-free-6.4.0-web/', 'assets/font-awesome/');
+                $oFiles->rcopy('vendor/pbd-kn/contao-tinymce-plugin-fontawesome-bundle/fontawesome/css/fontawesome-free-6.4.2-web/', 'assets/font-awesome/');
                 break;
               default:
                 $this->customLogger->debug("PBD TinyFontawesome movePluginFiles Version switch default");
