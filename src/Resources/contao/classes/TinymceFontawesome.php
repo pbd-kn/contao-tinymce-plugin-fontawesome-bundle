@@ -69,17 +69,15 @@ class TinymceFontawesome
      */
     public static function getFontawesomeMetaData(): array
     {
-\System::log("PBD getFontawesomeMetaData ", __METHOD__, TL_GENERAL);
+//\System::log("PBD getFontawesomeMetaData ", __METHOD__, TL_GENERAL);
 
         $container = \System::getContainer();           // wg. static-function
         // Den Parameter aus dem Container abrufen
         $fontawesome_meta_file_version = $container->getParameter('pbdkn_contao_tinymce_plugin_fontawesome.fontawesome_meta_file_version');
-        //\System::log("PBD getFontawesomeMetaData fontawesome_meta_file_version |$fontawesome_meta_file_version| ", __METHOD__, TL_GENERAL);
         $metaData=[];
         $versionPattern = '/\/v(\d+)\.(\d+)\.(\d+)\//';
         $fontAweversion=6;   // default
         $res= explode(".", $fontawesome_meta_file_version);
-        foreach ($res as $k=>$v)    \System::log("PBD getFontawesomeMetaData fontawesome_meta_file_version res[$k] $v", __METHOD__, TL_GENERAL);
         if ($res) {
           if (isset($res[0])) {
             $fontAweversion=$res[0];              
@@ -88,7 +86,7 @@ class TinymceFontawesome
               case 5:
                 $objFile = new \File('vendor/pbd-kn/contao-tinymce-plugin-fontawesome-bundle/fontawesome/css/fontawesome-free-5.12.0-web/metadata/icons.json');
                 $json=$objFile->getContent();                // meta-jsonfile lesen 
-                \System::log("PBD getFontawesomeMetaData Version 5 len metadata ".strlen($json), __METHOD__, TL_GENERAL);
+                //\System::log("PBD getFontawesomeMetaData Version 5 len metadata ".strlen($json), __METHOD__, TL_GENERAL);
                 // aufbereiten json File fontawesome version 5
                 $retArray=[];
                 $metaData=json_decode($json, true);
@@ -114,7 +112,7 @@ class TinymceFontawesome
                 // aufbereiten json File fontawesome version 6
                 $retArray=[];
                 $metaData=json_decode($json, true);
-                \System::log("PBD getFontawesomeMetaData Version 6 count ".count($metaData).' Version 6', __METHOD__, TL_GENERAL);
+                //\System::log("PBD getFontawesomeMetaData Version 6 count ".count($metaData).' Version 6', __METHOD__, TL_GENERAL);
                 foreach ($metaData as $k=>$v) {
                   $icArray=[];
                   $icArray['id']=$k;                    //  id
