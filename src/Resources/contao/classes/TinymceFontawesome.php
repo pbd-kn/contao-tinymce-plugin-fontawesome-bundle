@@ -101,12 +101,6 @@ class TinymceFontawesome
                   $icArray['styles']=$v['styles'];         //  wird als family ausgewertet
                   $v['search']['terms'][]='all';
                   $icArray['search']=$v['search']['terms'];//  ergibt die categorien wird um all erweitert
-/*
-                  \System::log("PBD getFontawesomeMetaData metaData[$k]: $v", __METHOD__, TL_GENERAL);
-                  foreach ($v as $k1=>$v1) {
-                    \System::log("PBD getFontawesomeMetaData v[$k1]: $v1", __METHOD__, TL_GENERAL);
-                  }
-*/
                   $retArray[]=$icArray;
                   }
               break;
@@ -130,12 +124,6 @@ class TinymceFontawesome
                   $icArray['styles']=$v['styles'];         //  wird als family ausgewertet
                   $v['search']['terms'][]='all';
                   $icArray['search']=$v['search']['terms'];//  ergibt die categorien wird um all erweitert
-/*
-                  \System::log("PBD getFontawesomeMetaData metaData[$k]: $v", __METHOD__, TL_GENERAL);
-                  foreach ($v as $k1=>$v1) {
-                    \System::log("PBD getFontawesomeMetaData v[$k1]: $v1", __METHOD__, TL_GENERAL);
-                  }
-*/
                   $retArray[]=$icArray;
                 }
                 break;
