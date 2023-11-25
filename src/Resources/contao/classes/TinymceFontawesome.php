@@ -157,51 +157,45 @@ class TinymceFontawesome
     public function movePluginFiles()
     {
         $this->debugMe('PBD TinyFontawesome call movePluginFiles');
-        //if (!is_file(TL_ROOT . '/vendor/pbd-kn/contao-tinymce-plugin-fontawesome-bundle/src/Resources/tinymce4/js/plugins/fontawesome/copied.txt'))
-        //{
+        $fontawesomeSourcePath = $this->fontawesomeSourcePath;
+        $versionPattern = '/\/v(\d+)\.(\d+)\.(\d+)\//';
+        $fontAweversion=6;   // default
+        $matches=array();
+        $res = preg_match($versionPattern, $fontawesomeSourcePath, $matches);
+        if ($res) {
+          if (isset($matches[1])) {
+            $fontAweversion=$matches[1];              
+          }
+        }
+        if (!is_file(TL_ROOT . '/vendor/pbd-kn/contao-tinymce-plugin-fontawesome-bundle/src/Resources/tinymce4/js/plugins/fontawesome/copied.txt'))
+        {
             $this->debugMe('PBD TinyFontawesome movePluginFiles ausgefuehrt');
             $oFiles = \Files::getInstance();
             // Copy fontawe Plugin
             $oFiles->rcopy('vendor/pbd-kn/contao-tinymce-plugin-fontawesome-bundle/src/Resources/tinymce4/js/plugins/fontawesome', 'assets/tinymce4/js/plugins/fontawesome');
-            $fontawesomeSourcePath = $this->fontawesomeSourcePath;
-            $versionPattern = '/\/v(\d+)\.(\d+)\.(\d+)\//';
-            $fontAweversion=6;   // default
-            $matches=array();
-            $res = preg_match($versionPattern, $fontawesomeSourcePath, $matches);
-            if ($res) {
-              if (isset($matches[1])) {
-                $fontAweversion=$matches[1];              
-              }
-            }
             $this->debugMe("PBD TinyFontawesome movePluginFiles Version $fontAweversion");        
             switch ($fontAweversion) {
-/*
-              case 4:
-                $this->customLogger->debug("PBD TinyFontawesome movePluginFiles Version switch 4");
-                $oFiles->rcopy('vendor/pbd-kn/contao-tinymce-plugin-fontawesome-bundle/fontawesome/css/fontawesome-free-4.7.0-web/', 'assets/font-awesome/webfonts/');
-                break;
-*/
               case 5:
                 $this->customLogger->debug("PBD TinyFontawesome movePluginFiles Version switch 5");
                 $oFiles->rcopy('vendor/pbd-kn/contao-tinymce-plugin-fontawesome-bundle/fontawesome/css/fontawesome-free-5.12.0-web/', 'assets/font-awesome/webfonts/');
                 break;
               case 6:
+              default:
+                if ($fontAweversion != 6) {
+                   $this->customLogger->debug("PBD TinyFontawesome movePluginFiles Version switch to default Version 6");
+                }
                 $this->customLogger->debug("PBD TinyFontawesome movePluginFiles Version switch 6");
                 $oFiles->rcopy('vendor/pbd-kn/contao-tinymce-plugin-fontawesome-bundle/fontawesome/css/fontawesome-free-6.4.2-web/', 'assets/font-awesome/');
-                break;
-              default:
-                $this->customLogger->debug("PBD TinyFontawesome movePluginFiles Version switch default");
-                $oFiles->rcopy('vendor/pbd-kn/contao-tinymce-plugin-fontawesome-bundle/fontawesome/css/fontawesome-free-6.4.0-web/', 'assets/font-awesome/webfonts/');
                 break;
             }            
 
             $objFile = new \File('vendor/pbd-kn/contao-tinymce-plugin-fontawesome-bundle/src/Resources/tinymce4/js/plugins/fontawesome/copied.txt', true);
-            $objFile->append('Plugin files "assets/tinymce4/js/plugins/fontawesome/*" already copied to the assets directory in "assets/tinymce4/js/plugins/fontawesome".');
+            $objFile->append('Plugin files "assets/tinymce4/js/plugins/fontawesome/*" and the assets directory in "assets/tinymce4/js/plugins/fontawesome"');
             $objFile->close();
             $this->debugMe('PBD TinyFontawesome movePluginFiles kopiert');
-        //} else {
+        } else {
             $this->debugMe('PBD TinyFontawesome movePluginFiles wurde schon kopiert. Siehe vendor/pbd-kn/contao-tinymce-plugin-fontawesome-bundle/src/Resources/tinymce4/js/plugins/fontawesome/copied.txt');
-        //}
+        }
 
     }
     function debugMe($txt) {

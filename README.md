@@ -13,6 +13,7 @@ markocupic/contao-tinymce-plugin-builder-bundle  Version >
 Die Konfiguration wird in `config/config.yaml` gemacht.
 Sind keine Einträge vorhanden, so wir die Defaulteinstellung installiert
 
+## Version 6 (default)
 ```yaml
 pbdkn_contao_tinymce_plugin_fontawesome:
     # get sourcepath for fontawesome 
@@ -22,5 +23,20 @@ pbdkn_contao_tinymce_plugin_fontawesome:
     # default
     fontawesome_meta_file_version: '6.4.2'
 ```
+## Version 5
+```yaml
+pbdkn_contao_tinymce_plugin_fontawesome:
+    # get sourcepath for fontawesome 
+    # default
+    fontawesome_source_path: 'https://use.fontawesome.com/releases/v5.12.0/js/all.js'
+    # Version of the metafile
+    # default
+    fontawesome_meta_file_version: '5.12.0'
+```
+
+Soll nach der Installation die fontaweversion gewechselt werden, so ist die Datei 
+vendor/pbd-kn/contao-tinymce-plugin-fontawesome-bundle/src/Resources/tinymce4/js/plugins/fontawesome/copied.txt
+zu löschen und den Cache erneuern, 
+oder das Bundle neu zu installieren.
 
  

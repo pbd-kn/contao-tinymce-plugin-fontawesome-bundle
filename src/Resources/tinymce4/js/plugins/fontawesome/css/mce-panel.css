@@ -77,11 +77,11 @@
     justify-content: flex-start;
     margin: 0.1rem;
 */
-    float: left;
+    /*float: left;*/
 
     background-color: #fff;
     color: green;
-    //padding: 5px 15px;
+    /* //padding: 5px 15px; */
     cursor: pointer;
     border: 1px solid #ccc;
     text-align: center;
@@ -89,6 +89,16 @@
     height: 64px;
 
 }
+// dient dazu das element auch vom schirm auszublenden
+.mce-fontawesome-panel-content .position-off-screen {
+  position: absolute;
+  left: -10000px;
+  top: -10000px;
+  width:1px;
+  height:1px;
+  overflow: hidden;
+}
+
 .mce-icon-cell svg{
 background-color:#fff;
 height:2em;
@@ -112,22 +122,12 @@ padding-top:1em
     background-color: rgba(0,0,0,.1);
 }
 
-/* Search */
+/* Search 
 .mce-fontawesome-search-container {
     position: absolute;
     margin: 10px 0 0 10px;
 }
 
-.mce-fontawesome-search-container::before {
-    /* font-family: 'Font Awesome 5 Free' !important; 
-    content: "\f002";
-    position: absolute;
-    top: 0;
-    left: 0;
-    line-height: 30px;
-    color: rgba(0,0,0,.4);
-    */
-}
 
 .mce-fontawesome-search-container-clear {
     position: absolute;
@@ -185,7 +185,7 @@ padding-top:1em
     right: 0px;
     top: calc(50% - 8px);
 }
-
+*/
 /* Toolbar icon */
 .mce-i-flag {
     display: inline-block;
@@ -206,4 +206,10 @@ padding-top:1em
 .tox-listboxfield {
   background:yellow;
 }
+.tox .tox-form__group--stretched .tox-textarea {
+  flex:0;
+  width: 97%;
+  background:yellow;
+}
+
 
