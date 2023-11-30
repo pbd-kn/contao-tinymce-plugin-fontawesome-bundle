@@ -203,13 +203,17 @@ padding-top:1em
 .mce-i-flag:before {
     content: "\f024";
 }
+/*
 .tox-listboxfield {
   background:yellow;
 }
+
 .tox .tox-form__group--stretched .tox-textarea {
   flex:0;
   width: 97%;
   background:yellow;
 }
-
-
+*/
+.tox .tox-dialog--width-lg {
+  height: auto;
+}
