@@ -28,10 +28,8 @@ pbdkn_contao_tinymce_plugin_fontawesome:
 ```yaml
 pbdkn_contao_tinymce_plugin_fontawesome:
     # get sourcepath for fontawesome 
-    # default
     fontawesome_source_path: 'https://use.fontawesome.com/releases/v5.12.0/js/all.js'
     # Version of the metafile
-    # default
     fontawesome_meta_file_version: '5.12.0'
 ```
 
