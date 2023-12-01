@@ -11,7 +11,8 @@ markocupic/contao-tinymce-plugin-builder-bundle  Version >
 
 ## Konfiguration
 Die Konfiguration wird in `config/config.yaml` gemacht.
-Sind keine Einträge vorhanden, so wir die Defaulteinstellung installiert
+Sind keine Einträge vorhanden, so wir die Defaulteinstellung installiert.
+Die Icons stehen im FE automatisch zu Verfügung. es ist kein <script> Eintrag im Header notwendig.
 
 ## Version 6 (default)
 ```yaml

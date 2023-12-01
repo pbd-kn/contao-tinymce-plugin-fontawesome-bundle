@@ -30,7 +30,7 @@ class PbdknContaoTinymcePluginFontawesomeExtension extends Extension
             new FileLocator(__DIR__.'/../../config')
         );
         $loader->load('services.yaml');
-echo "PBD function load services.yaml PBDContaoTinymcePluginFontawesomeExtension ".realpath(__DIR__.'/../../config/services.yaml')."\n";
+//echo "PBD function load services.yaml PBDContaoTinymcePluginFontawesomeExtension ".realpath(__DIR__.'/../../config/services.yaml')."\n";
 
 
         $rootKey = $this->getAlias();
@@ -40,7 +40,7 @@ echo "PBD function load services.yaml PBDContaoTinymcePluginFontawesomeExtension
 
         $container->setParameter($rootKey.'.fontawesome_styles', $config['fontawesome_styles']);
         $myfontawesomeMetaFileVersion = $container->getParameter($rootKey.'.fontawesome_meta_file_version');
-echo "PBD extension PBDContaoTinymcePluginFontawesomeExtension parameter gesetzt fontawesome_meta_file_version $myfontawesomeMetaFileVersion\n";
+//echo "PBD extension PBDContaoTinymcePluginFontawesomeExtension parameter gesetzt fontawesome_meta_file_version $myfontawesomeMetaFileVersion\n";
 
 // Rufe den ParameterBag ab
 /*
@@ -61,7 +61,7 @@ var_dump($allParameters);
         $loader->load('parameters.yml');
         $loader->load('listener.yml');
         $loader->load('services.yml');
-echo "PBD extension PBDContaoTinymcePluginFontawesomeExtension ende\n";
+//echo "PBD extension PBDContaoTinymcePluginFontawesomeExtension ende\n";
     }
 
 

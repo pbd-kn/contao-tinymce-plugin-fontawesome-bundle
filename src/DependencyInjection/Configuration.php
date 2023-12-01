@@ -66,7 +66,7 @@ class Configuration implements ConfigurationInterface
                 ->end()
             ->end()
         ;
-echo "PBD Configuration getConfigTreeBuilder return\n";
+//echo "PBD Configuration getConfigTreeBuilder return\n";
 
         return $treeBuilder;
     }
