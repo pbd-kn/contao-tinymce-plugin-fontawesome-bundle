@@ -144,6 +144,8 @@ class TinymceFontawesome
      * Initialize System Hook
      * Runonce
      * Copy plugin sources to assets/tinymce4/js/plugins/fontawesome
+     * and be_tinyMCE.html5 nach templates
+     * wird als hook in src\Resources\contao\config\config.php bei initializeSystem eingetragen
      */
     public function initMe()
     {
@@ -187,7 +189,9 @@ class TinymceFontawesome
                 $this->customLogger->debug("PBD TinyFontawesome movePluginFiles Version switch 6");
                 $oFiles->rcopy('vendor/pbd-kn/contao-tinymce-plugin-fontawesome-bundle/fontawesome/css/fontawesome-free-6.4.2-web/', 'assets/font-awesome/');
                 break;
-            }            
+            }     
+            $oFiles->rcopy('vendor/pbd-kn/contao-tinymce-plugin-fontawesome-bundle/fontawesome/template', 'templates/');     // ??? kopiert template be_tinyMCE.html5 in die webseite
+                   
 
             $objFile = new \File('vendor/pbd-kn/contao-tinymce-plugin-fontawesome-bundle/src/Resources/tinymce4/js/plugins/fontawesome/copied.txt', true);
             $objFile->append('Plugin files "assets/tinymce4/js/plugins/fontawesome/*" and the assets directory in "assets/tinymce4/js/plugins/fontawesome"');
